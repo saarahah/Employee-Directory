@@ -1,15 +1,5 @@
-import React from "react";
-import SearchResultContainer from "./components/SearchResultContainer";
-
-
-function App() {
-  return <SearchResultContainer />;
-}
-
-export default App;
-
 // import React from 'react';
-// import './style.css';
+// import './styles.css';
 
 // const useSortableData = (items, config = null) => {
 //   const [sortConfig, setSortConfig] = React.useState(config);
@@ -45,8 +35,8 @@ export default App;
 //   return { items: sortedItems, requestSort, sortConfig };
 // };
 
-// const UserTable = (props) => {
-//   const { items, requestSort, sortConfig } = useSortableData(props.users);
+// const ProductTable = (props) => {
+//   const { items, requestSort, sortConfig } = useSortableData(props.products);
 //   const getClassNamesFor = (name) => {
 //     if (!sortConfig) {
 //       return;
@@ -55,18 +45,16 @@ export default App;
 //   };
 //   return (
 //     <table>
-//       <caption>Employees</caption>
+//       <caption>Products</caption>
 //       <thead>
 //         <tr>
-//         <th>Picture</th>
-        
-//       <th>
+//           <th>
 //             <button
 //               type="button"
 //               onClick={() => requestSort('name')}
 //               className={getClassNamesFor('name')}
 //             >
-//               First Name
+//               Name
 //             </button>
 //           </th>
 //           <th>
@@ -75,7 +63,7 @@ export default App;
 //               onClick={() => requestSort('price')}
 //               className={getClassNamesFor('price')}
 //             >
-//               Last Name
+//               Price
 //             </button>
 //           </th>
 //           <th>
@@ -84,42 +72,19 @@ export default App;
 //               onClick={() => requestSort('stock')}
 //               className={getClassNamesFor('stock')}
 //             >
-//               Email
-//             </button>
-//           </th>
-//           <th>
-//             <button
-//               type="button"
-//               onClick={() => requestSort('stock')}
-//               className={getClassNamesFor('stock')}
-//             >
-//               Phone
-//             </button>
-//           </th>
-//           <th>
-//             <button
-//               type="button"
-//               onClick={() => requestSort('stock')}
-//               className={getClassNamesFor('stock')}
-//             >
-//               Age
+//               In Stock
 //             </button>
 //           </th>
 //         </tr>
 //       </thead>
 //       <tbody>
-//       {this.props.results.map(function(item, i){
-//         console.log(this.props.results)
-//       return <tr key={item.name.last}>
-//          <td><img src={item.picture.thumbnail} /></td>
-//          <td>{item.name.first}</td>
-//          <td>{item.name.last}</td>
-//          <td>{item.email}</td>
-//          <td>{item.phone}</td>
-//          <td>{item.registered.age}</td>
-//        </tr>      
-//       })}
-      
+//         {items.map((item) => (
+//           <tr key={item.id}>
+//             <td>{item.name}</td>
+//             <td>${item.price}</td>
+//             <td>{item.stock}</td>
+//           </tr>
+//         ))}
 //       </tbody>
 //     </table>
 //   );
@@ -128,8 +93,16 @@ export default App;
 // export default function App() {
 //   return (
 //     <div className="App">
-//       <UserTable
-//         users={[]}
+//       <ProductTable
+//         products={[
+//           { id: 1, name: 'Cheese', price: 4.9, stock: 20 },
+//           { id: 2, name: 'Milk', price: 1.9, stock: 32 },
+//           { id: 3, name: 'Yoghurt', price: 2.4, stock: 12 },
+//           { id: 4, name: 'Heavy Cream', price: 3.9, stock: 9 },
+//           { id: 5, name: 'Butter', price: 0.9, stock: 99 },
+//           { id: 6, name: 'Sour Cream ', price: 2.9, stock: 86 },
+//           { id: 7, name: 'Fancy French Cheese 🇫🇷', price: 99, stock: 12 },
+//         ]}
 //       />
 //     </div>
 //   );
