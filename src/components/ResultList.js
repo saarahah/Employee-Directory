@@ -6,13 +6,15 @@ function ResultList({results}) {
   {console.log(results)}
   return (
     <div>
-    <table >
+    <table className="table table-bordered table-sortable" >
       <thead>
       <tr>
-      <th>ID</th>
+      <th>Picture</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
+      <th>Phone</th>
+      <th>Age</th>
 
       </tr>
       </thead>
@@ -24,6 +26,7 @@ function ResultList({results}) {
          <td>{item.name.last}</td>
          <td>{item.email}</td>
          <td>{item.phone}</td>
+         <td>{item.registered.age}</td>
        </tr>      
       })}
 
