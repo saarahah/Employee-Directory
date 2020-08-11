@@ -3,14 +3,18 @@ import React from "react";
 //table
 
 function ResultList({results}) {
-  {console.log(results)}
+  // {console.log(results)}
+  // const { results } = props;
+  const [sortedField, setSortedField] = React.useState(null);
   return (
     <div>
     <table className="table table-bordered table-sortable" >
       <thead>
       <tr>
       <th>Picture</th>
-      <th>First Name</th>
+      <th> <button type="button" onClick={() => setSortedField('name')}>
+          Name
+          </button></th>
       <th>Last Name</th>
       <th>Email</th>
       <th>Phone</th>
