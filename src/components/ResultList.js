@@ -5,14 +5,11 @@ import React, { Component } from "react";
 const name = document.getElementById("name")
 
 class ResultList extends Component {
-
   state = {
     filterUsers: [{}],
     order: "descending",
     users: [{}]
-  };
-
-
+  }
 
  sort = function sortOrder(){
   if (this.state.order === "descending"){
@@ -27,38 +24,78 @@ class ResultList extends Component {
   }
   }
 
- const orderLogic = if(this.state.order === "ascending"){
-    if(name){
-      console.log(this.props.results.map(function(item){
-        item.name.first    
-      }).sort(a, b){
-      if(a.item.name.first<b.item.name.first){
-        return -1;
-      }if(a.item.name.first>b.item.name.first){
-        return 1;
-      }
-      return 0;
-      }
+
+  orderLogic(arr) {
+    function compare(a, b) {
+    var nameA = a.name.first.toUpperCase(); // ignore upper and lowercase
+    var nameB = b.name.first.toUpperCase(); // ignore upper and lowercase
+    if (a.name.first > b.name.first) {
+      return this.state.order === "ascending" ? -1 : 1;
     }
+    if (a.name.first < b.name.first) {
+      return this.state.order === "descending" ? -1 : 1;
+    }
+    // a must be equal to b
+    return 0;
+    }
+        return arr.sort(compare); 
   }
-   
 
   render(){
-
-    console.log(this.props)
-
+  
   return (
+
     <div>
     <table className="table table-bordered table-sortable" >
       <thead>
       <tr>
 
       <th>Picture</th>
-      <th id="name">Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Age</th>
+      <th>
+            <button
+              type="button"
+              // onClick={() => requestSort(item.name.first)}
+              // className={getClassNamesFor(item.name.first)}
+            >
+              First Name
+            </button>
+          </th>
+          <th>
+            <button
+              type="button"
+              // onClick={() => requestSort('price')}
+              // className={getClassNamesFor('price')}
+            >
+              Last Name
+            </button>
+          </th>
+          <th>
+            <button
+              type="button"
+              // onClick={() => requestSort('stock')}
+              // className={getClassNamesFor('stock')}
+            >
+              Email
+            </button>
+          </th>
+          <th>
+            <button
+              type="button"
+              // onClick={() => requestSort('stock')}
+              // className={getClassNamesFor('stock')}
+            >
+              Phone
+            </button>
+          </th>
+          <th>
+            <button
+              type="button"
+              // onClick={() => requestSort('stock')}
+              // className={getClassNamesFor('stock')}
+            >
+              Age
+            </button>
+          </th>
 
       </tr>
       </thead>
@@ -81,4 +118,24 @@ class ResultList extends Component {
 }
 }
 
+
+
 export default ResultList;
+
+// export default function App() {
+//   return (
+//     <div className="App">
+//       <ProductTable
+//         products={[
+//           { id: 1, name: 'Cheese', price: 4.9, stock: 20 },
+//           { id: 2, name: 'Milk', price: 1.9, stock: 32 },
+//           { id: 3, name: 'Yoghurt', price: 2.4, stock: 12 },
+//           { id: 4, name: 'Heavy Cream', price: 3.9, stock: 9 },
+//           { id: 5, name: 'Butter', price: 0.9, stock: 99 },
+//           { id: 6, name: 'Sour Cream ', price: 2.9, stock: 86 },
+//           { id: 7, name: 'Fancy French Cheese 🇫🇷', price: 99, stock: 12 },
+//         ]}
+//       />
+//     </div>
+//   );
+// }
