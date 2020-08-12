@@ -7,15 +7,15 @@ class SearchResultContainer extends Component {
   state = {
     search: "",
     results: [],
+    sort: "",
     order: "descending",
   };
 
-  // When this component mounts, search the Giphy API for pictures of kittens
   componentDidMount() {
     this.searchEmployee();
   }
 
-  searchEmployee = (query) => {
+  searchEmployee = (event) => {
     API.search()
       .then((res) => {
         this.setState({
@@ -24,6 +24,8 @@ class SearchResultContainer extends Component {
       })
       .catch((err) => console.log(err));
   };
+
+  
 
   handleInputChange = (event) => {
     const name = event.target.name;
