@@ -7,7 +7,8 @@ class SearchResultContainer extends Component {
   state = {
     search: "",
     results: [],
-    sort: "",
+    filtered: [],
+    sortAsc: true,
     order: "descending",
   };
 
@@ -15,24 +16,34 @@ class SearchResultContainer extends Component {
     this.searchEmployee();
   }
 
-  searchEmployee = (event) => {
+  searchEmployee = () => {
     API.search()
       .then((res) => {
         this.setState({
           results: res.data.results,
+          filtered: res.data.results
         });
       })
       .catch((err) => console.log(err));
   };
 
   
-
   handleInputChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
     this.setState({
-      [name]: value,
+      search: event.target.value
     });
+
+    let filterArray = this.state.results.filter(person => {
+      //grab name
+      let name = person.name.first.toLowerCase()
+      //is letter typing inside name
+      //if there then return it to filtered array
+      return name.indexOf(event.target.value) !== -1
+    })
+    this.setState({
+      //set filter with filter array just sent in
+      filtered: filterArray
+    })
   };
 
   // When the form is submitted, search the Giphy API for `this.state.search`
@@ -41,45 +52,37 @@ class SearchResultContainer extends Component {
     this.searchEmployee(this.state.search);
   };
 
-  // //toggles between the states
-  sort = () => {
-    if (this.state.order === "descending") {
-      this.setState({
-        order: "ascending",
-      });
-    } else {
-      //update the boolean
-      this.setState({
-        order: "descending",
-      });
-    }
-  };
-
-  sortByName = (array) => {
-    let newArray = [];
+  sortByName = () => {
     //swap the order
-    if (this.state.order === "descending") {
-      console.log("It is descending");
+    console.log(this.state.filtered)
+    if (this.state.sortAsc) {
+     this.state.filtered.sort(function (a, b) {
+       if(a.name.first.toUpperCase() > b.name.first.toUpperCase()){
+         return 1
+       }else{
+         return -1
+       }        
+      });
       this.setState({
-        order: "ascending",
-      });
-      //sort the array
-      console.log("Sorting array");
-      newArray = array.sort(function (a, b) {
-        return a.name.first.toUpperCase() - b.name.first.toUpperCase();
-      });
+        sortAsc: !this.state.sortAsc
+      })
     } else {
       //update the boolean
-      this.setState({
-        order: "descending",
-      });
+     
       //sort the array the other way
       console.log("Sorting array");
-      newArray = array.sort(function (a, b) {
-        return b.name.first.toUpperCase() - a.name.first.toUpperCase();
+      this.state.filtered.sort(function (a, b) {
+        if(b.name.first.toUpperCase() > a.name.first.toUpperCase()){
+          return 1
+        }else{
+          return -1
+        }        
       });
+      this.setState({
+        sortAsc: !this.state.sortAsc
+      })
     }
-    console.log("Sorted Array", newArray);
+    // console.log("Sorted Array", newArray);
   };
 
   //   orderLogic(state,arr) {
@@ -107,7 +110,7 @@ class SearchResultContainer extends Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />{" "}
-        <ResultList results={this.state.results} handleSort={this.sortByName} />{" "}
+        <ResultList results={this.state.filtered} handleSort={this.sortByName} />{" "}
       </div>
     );
   }

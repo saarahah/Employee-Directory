@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// import { useTable } from 'react-table'
 // import "../../src/style"
 
 const name = document.getElementById("name");
@@ -11,9 +12,10 @@ class ResultList extends Component {
           <thead>
             <tr>
               <th> Picture </th>
+              
               <th id="name"><button type="button" onClick={() => {
                   console.log("Name Search Clicked")
-                  this.props.handleSort(this.props.results);
+                  this.props.handleSort();
                 }}// className={getClassNamesFor('name')}
               >First Name</button>
               </th>
