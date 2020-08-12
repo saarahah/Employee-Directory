@@ -82,25 +82,71 @@ class SearchResultContainer extends Component {
         sortAsc: !this.state.sortAsc
       })
     }
-    // console.log("Sorted Array", newArray);
   };
 
-  //   orderLogic(state,arr) {
+  sortByLastName = () => {
+    //swap the order
+    console.log(this.state.filtered)
+    if (this.state.sortAsc) {
+     this.state.filtered.sort(function (a, b) {
+       if(a.name.last.toUpperCase() > b.name.last.toUpperCase()){
+         return 1
+       }else{
+         return -1
+       }        
+      });
+      this.setState({
+        sortAsc: !this.state.sortAsc
+      })
+    } else {
+      //update the boolean
+     
+      //sort the array the other way
+      console.log("Sorting array");
+      this.state.filtered.sort(function (a, b) {
+        if(b.name.last.toUpperCase() > a.name.last.toUpperCase()){
+          return 1
+        }else{
+          return -1
+        }        
+      });
+      this.setState({
+        sortAsc: !this.state.sortAsc
+      })
+    }
+  };
 
-  //     function compare(a, b) {
-  //       var nameA = a.name.first.toUpperCase(); // ignore upper and lowercase
-  //       var nameB = b.name.first.toUpperCase(); // ignore upper and lowercase
-  //       if (nameA > nameB) {
-  //         return state.order === "ascending" ? -1 : 1;
-  //       }
-  //       if (a.name.first < b.name.first) {
-  //         return state.order === "descending" ? -1 : 1;
-  //       }
-  //       // a must be equal to b
-  //       return 0;
-  //     }
-  //     return arr.sort(compare);
-  //   }
+  sortByAge = () => {
+    //swap the order
+    console.log(this.state.filtered)
+    if (this.state.sortAsc) {
+     this.state.filtered.sort(function (a, b) {
+       if(a.registered.age > b.registered.age){
+         return 1
+       }else{
+         return -1
+       }        
+      });
+      this.setState({
+        sortAsc: !this.state.sortAsc
+      })
+    } else {
+      //update the boolean
+     
+      //sort the array the other way
+      console.log("Sorting array");
+      this.state.filtered.sort(function (a, b) {
+        if(b.registered.age > a.registered.age){
+          return 1
+        }else{
+          return -1
+        }        
+      });
+      this.setState({
+        sortAsc: !this.state.sortAsc
+      })
+    }
+  };
 
   render() {
     return (
@@ -110,7 +156,9 @@ class SearchResultContainer extends Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />{" "}
-        <ResultList results={this.state.filtered} handleSort={this.sortByName} />{" "}
+        <ResultList results={this.state.filtered} handleSort={this.sortByName} 
+         results={this.state.filtered} handleSortLast={this.sortByLastName}
+         results={this.state.filtered} handleSortAge={this.sortByAge}/>{" "}
       </div>
     );
   }

@@ -16,42 +16,29 @@ class ResultList extends Component {
               <th id="name"><button type="button" onClick={() => {
                   console.log("Name Search Clicked")
                   this.props.handleSort();
-                }}// className={getClassNamesFor('name')}
+                }}
               >First Name</button>
               </th>
+
               <th>
-                <button
-                  type="button"
-                  // onClick={() => requestSort('price')}
-                  // className={getClassNamesFor('price')}
-                >
-                  Last Name
+               <button type="button" onClick={() => {
+                    console.log("Name Search Clicked")
+                    this.props.handleSortLast();
+                  }}
+                >Last Name
                 </button>
               </th>
               <th>
-                <button
-                  type="button"
-                  // onClick={() => requestSort('stock')}
-                  // className={getClassNamesFor('stock')}
-                >
                   Email
-                </button>
               </th>
               <th>
-                <button
-                  type="button"
-                  // onClick={() => requestSort('stock')}
-                  // className={getClassNamesFor('stock')}
-                >
                   Phone
-                </button>
               </th>
               <th>
-                <button
-                  type="button"
-                  // onClick={() => requestSort('stock')}
-                  // className={getClassNamesFor('stock')}
-                >
+              <button type="button" onClick={() => {
+                    console.log("Name Search Clicked")
+                    this.props.handleSortAge();
+                  }}>
                   Age
                 </button>
               </th>
